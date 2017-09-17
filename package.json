@@ -1,0 +1,14 @@
+{
+  "name": "pip2mps",
+  "version": "0.1.0",
+  "description": "Displays for PIP2 machine protection system.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Beau Harrison <beau@fnal.gov>",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "d3-random": "^1.1.0"
+  }
+}
