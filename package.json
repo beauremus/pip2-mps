@@ -4,11 +4,16 @@
   "description": "Displays for PIP2 machine protection system.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "rsync -avz --exclude \".git\" --exclude \".gitignore\" --exclude-from \".gitignore\" $(pwd) chablis:/usr/local/www/data/ops/$USER/",
+    "build": "webpack"
   },
   "author": "Beau Harrison <beau@fnal.gov>",
   "license": "UNLICENSED",
   "dependencies": {
     "d3-random": "^1.1.0"
+  },
+  "devDependencies": {
+    "webpack": "^3.6.0"
   }
 }
