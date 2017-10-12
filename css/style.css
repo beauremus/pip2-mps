@@ -6,3 +6,9 @@
   fill: #fff;
   font: 10px sans-serif;
 }
+
+.path {
+  fill: none;
+  stroke: #ffab00;
+  stroke-width: 3;
+}

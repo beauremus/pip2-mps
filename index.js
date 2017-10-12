@@ -1,26 +1,46 @@
-const size = 200
-const lineWidth = 3
-//let data = d3.range(size).map(d3.randomNormal(0.4, 0.1)).sort().reverse()
 const dpm = new DPM()
-let bar
-let y
+const acl = new ACLD()
+const lineWidth = 3
 
-const formatCount = d3.format(',.0f')
-
-const svg = d3.select('svg')
+// Use the margin convention practice
 const margin = {
-  top: 10,
-  right: 30,
-  bottom: 30,
-  left: 30
+  top: 50,
+  right: 50,
+  bottom: 50,
+  left: 50
 }
-const width = +svg.attr('width') - margin.left - margin.right
-const height = +svg.attr('height') - margin.top - margin.bottom
+// Use the window's width
+const width = window.innerWidth - margin.left - margin.right
 
-const x = d3.scaleLinear()
-  .rangeRound([0, width])
+// Use the window's height
+const height = window.innerHeight - margin.top - margin.bottom
 
-const barWidth = width / size
+// The number of datapoints
+let n = 4000
+
+// 6. Y scale will use the randomly generate number
+const yScale = d3.scaleLinear()
+  .domain([0, 80]) // input
+  .range([height, 0]) // output
+
+const path = d3.line()
+  .x((d, i) => xScale(i)) // set the x values for the line generator
+  .y((d) => yScale(d)) // set the y values for the line generator
+
+// 5. X scale will use the index of our data
+const xScale = d3.scaleLinear()
+  .domain([0, n - 1]) // input
+  .range([0, width]) // output
+
+// An array of objects of length N. Each object has key -> value pair, the key being 'y' and the value is a random number
+let dataset = []
+
+// Add the SVG to the page and employ #2
+const svg = d3.select('#one')
+  .attr('width', width)
+  .attr('height', height)
+  .append('g')
+  .attr('transform', `translate(${margin.left}, ${margin.top})`)
 
 function bringToFront(input) {
   if(typeof(input) === 'string') {
@@ -33,71 +53,84 @@ function bringToFront(input) {
 }
 
 function updateBars(data, info) {
-  const dataArray = new Float32Array(data.data, 20)
+  const dataArray = new Float32Array(data.data, 4*5)
+  dataset = Array.from(dataArray)
 
-  y = d3.scaleLinear()
-    .domain([0, d3.max(dataArray)])
-    .range([height, 0])
+  svg.selectAll('.path').remove()
 
-  bar = svg.selectAll('.bar')
-    .data(dataArray)
-    .enter().append('rect')
-    .attr('class', 'bar')
-    .attr('fill', 'blue')
-    .attr('x', (d, i) => margin.left + (barWidth * i))
-    .attr('width', (width / size) - 1)
-    .attr('y', d => height - d)
-    .attr('height', d => d)
+  // Append the path, bind the data, and call the line generator
+  svg.append('path')
+    .datum(dataset) // Binds data to the line
+    .attr('class', 'path') // Assign a class for styling
+    .attr('d', path) // Calls the line generator
 
-  bringToFront('.line')
+  bringToFront('.threshold')
 }
-
-function dragStarted() {
-  d3.select(this).raise()
-}
-
-function dragged(shape) {
-  let dy = d3.event.sourceEvent.offsetY
-
-  if (dy >= height) dy = height
-  if (dy <= lineWidth) dy = lineWidth
-
-  d3.select(this)
-    .attr('y1', dy)
-    .attr('y2', dy)
-}
-
-function dragStopped() {
-  //TODO: Set threshold
-}
-
-const dragBehavior = d3.drag()
-  .on("start", dragStarted)
-  .on("drag", dragged)
-  .on('end', dragStopped)
 
 function updateLine(line) {
   return (dpmData, dpmInfo) => {
     d3.select(line)
-      .attr('y1', dpmData.data)
-      .attr('y2', dpmData.data)
+      .attr('transform', `translate(0, ${yScale(dpmData.data)})`)
+
+    d3.select(line).select('.text').text(dpmData.data.toFixed(2))
 
     const valueField = document.querySelector('#threshold .value')
     valueField.textContent = dpmData.data
   }
 }
 
-const line = svg.append('line')
-  .attr('class', 'line')
-  .attr('stroke', 'red')
-  .attr('stroke-width', lineWidth)
-  .attr('x1', margin.left)
-  .attr('y1', lineWidth)
-  .attr('x2', width + margin.left)
-  .attr('y2', lineWidth)
+function moveLine() {
+  let dy = d3.event.sourceEvent.offsetY - margin.top
+
+  if (dy >= height) dy = height
+  if (dy <= lineWidth) dy = lineWidth
+
+  d3.select(this)
+    .attr('transform', `translate(0, ${dy})`)
+}
+
+function updateText() {
+  d3.select(this).select('.text')
+    .text(yScale.invert(d3.event.y).toFixed(2))
+}
+
+function dragStarted() {
+  d3.select(this).raise()
+  dpm.stop()
+}
+
+function dragged() {
+  moveLine.apply(this)
+  updateText.apply(this)
+}
+
+function dragStopped() {
+  acl.run(`set G:BEAU ${yScale.invert(d3.event.y)}`)
+  dpm.start()
+}
+
+const dragBehavior = d3.drag()
+  .on('start', dragStarted)
+  .on('drag', dragged)
+  .on('end', dragStopped)
+
+const threshold = svg.append('g')
+  .attr('class', 'threshold')
+  .attr('transform', `translate(0, ${height - margin.bottom - lineWidth})`)
   .call(dragBehavior)
 
-dpm.addRequest('G:BEAUARR{0:}.RAW@p,1000', updateBars)
-dpm.addRequest('G:BEAU', updateLine('.line'))
+const line = threshold.append('line')
+  .attr('stroke', 'red')
+  .attr('stroke-width', lineWidth)
+  .attr('x1', 0)
+  .attr('x2', width)
+
+const text = threshold.append('svg:text')
+  .attr('class', 'text')
+  .attr('dx', -10)
+  .attr('dy', -10)
+
+dpm.addRequest('G:BEAUARR[0:3999].RAW@P,1000', updateBars)
+dpm.addRequest('G:BEAU@P,67', updateLine('.threshold'))
 
 dpm.start()
