@@ -254,17 +254,17 @@ const plots = [
   {
     id: 'channel1',
     device: 'P:LMTRW1[:]@P,67',
-    type: 'line'
+    type: 'array'
   },
   {
     id: 'channel2',
     device: 'P:LMTRW2[:]@P,67',
-    type: 'line'
+    type: 'array'
   },
   {
     id: 'channel3',
     device: 'P:LMTRW3[:]@P,67',
-    type: 'line'
+    type: 'array'
   },
   {
     id: 'ring12',

@@ -69,12 +69,33 @@ function output(type) {
   }
 }
 
-function updatePlot(svg, xScale, yScale, path) {
+function updatePlot(svg, xScale, yScale, path, type) {
+  const length = 300
+  let timeData = []
+  let initialTime
+  let finalTime
+  const timePlotLength = 5
+  const timeFormat = d3.timeParse('%H:%M:%S')
   return (dpmData, dpmInfo) => {
-    const dataArray = new Float32Array(dpmData.data, 4 * 5)
-    dataset = Array.from(dataArray)
+    if (type === 'array'){
+      const dataArray = new Float32Array(dpmData.data, 4 * 5)
+      dataset = Array.from(dataArray)
+      xScale.domain([0, dataset.length])
+    } else if (type === 'time') {
+      if (timeData.length === 0) {
+        initialTime = new Date(dpmData.timestamp)
+        finalTime = new Date(initialTime.getTime() + timePlotLength * 60000)
+      }
+      if (timeData.length >= length) {
+        timeData.splice(0, length*.25)
+        initialTime = new Date(initialTime.getTime() + timePlotLength * .25 * 60000)
+        finalTime = new Date(finalTime.getTime() + timePlotLength * .25 * 60000)
+      }
+      timeData.push(dpmData.data)
+      xScale.domain([initialTime, finalTime])
+      dataset = timeData
+    }
 
-    xScale.domain([0, dataset.length])
     yScale.domain([d3.min(dataset), d3.max(dataset)])
 
     svg.select('.path').remove()
@@ -147,11 +168,7 @@ function draw(type) {
       .style('text-anchor', 'middle')
       .text(svg.node().parentElement.dataset.label)
 
-    if (type === 'line'){
-      return updatePlot(svg, xScale, yScale, path)
-    } else if (type === 'time') {
-      return () => console.error("Beau hasn't implemented time plots yet.")
-    }
+    return updatePlot(svg, xScale, yScale, path, type)
   }
 }
 
@@ -180,5 +197,6 @@ for (plot of plots) {
   dpm.addRequest(plot.device, draw(plot.type)(plot.id))
 }
 
+//TODO: Update plot size on window resize
 // window.addEventListener('resize', resizePlots)
 dpm.start()
