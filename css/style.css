@@ -2,7 +2,7 @@ body {
   font-family: "Open Sans", Helvetica, Arial, sans-serif;
   display: grid;
   grid-template-columns: repeat(10, 1fr);
-  grid-gap: 30px;
+  grid-gap: 20px;
   grid-auto-rows: minmax(50px, auto);
 }
 
@@ -108,18 +108,12 @@ span {
   grid-column: 1;
 }
 
-
-/* .bar rect {
-  fill: steelblue;
-}
-
-.bar text {
-  fill: #fff;
-  font: 10px sans-serif;
-}
-
 .path {
   fill: none;
-  stroke: #ffab00;
-  stroke-width: 3;
-} */
+  stroke: red;
+  stroke-width: 1;
+}
+
+#plots>div {
+  grid-gap: 0;
+}

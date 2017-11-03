@@ -72,12 +72,24 @@
       </div>
     </section>
     <section id="plots" class="full-width">
-      <div id="channel1" class="half-width-first row-1"></div>
-      <div id="channel2" class="half-width-first  row-2"></div>
-      <div id="channel3" class="half-width-first  row-3"></div>
-      <div id="ring12" class="half-width-second row-1"></div>
-      <div id="ring1dump" class="half-width-second  row-2"></div>
-      <div id="ring2dump" class="half-width-second  row-3"></div>
+      <div class="half-width-first row-1">
+        <svg id="channel1" data-label="Channel 1"></svg>
+      </div>
+      <div class="half-width-first row-2">
+        <svg id="channel2" data-label="Channel 2"></svg>
+      </div>
+      <div class="half-width-first row-3">
+        <svg id="channel3" data-label="Channel 3"></svg>
+      </div>
+      <div class="half-width-second row-1">
+        <svg id="ring12"></svg>
+      </div>
+      <div class="half-width-second row-2">
+        <svg id="ring1dump"></svg>
+      </div>
+      <div class="half-width-second row-3">
+        <svg id="ring2dump"></svg>
+      </div>
     </section>
     <section id="lastTrip" class="full-width">
       <div id="ring1current" class="row-1 half-width-first">
@@ -105,8 +117,8 @@
         <span id="lmtd2d" class="reading"></span>
       </div>
     </section>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-    <script src="consts.js"></script>
-    <script src="index.js"></script>
+    <script src="js/vendor/d3.v4.min.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>

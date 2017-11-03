@@ -252,7 +252,33 @@ const settings = [
 
 const plots = [
   {
-    id: '',
-    device: ''
-  }
+    id: 'channel1',
+    device: 'P:LMTRW1[:]@P,67',
+    type: 'line'
+  },
+  {
+    id: 'channel2',
+    device: 'P:LMTRW2[:]@P,67',
+    type: 'line'
+  },
+  {
+    id: 'channel3',
+    device: 'P:LMTRW3[:]@P,67',
+    type: 'line'
+  },
+  {
+    id: 'ring12',
+    device: 'P:LMTD12',
+    type: 'time'
+  },
+  {
+    id: 'ring1dump',
+    device: 'P:LMTD1D',
+    type: 'time'
+  },
+  {
+    id: 'ring2dump',
+    device: 'P:LMTD2D',
+    type: 'time'
+  },
 ]
