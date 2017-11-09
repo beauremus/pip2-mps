@@ -212,3 +212,4 @@ for (plot of plots) {
 dpm.start()
 
 //TODO:Refactor to use chart class
+//TODO:Prevent slow user setting changes from being overridden by device reading
