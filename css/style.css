@@ -25,14 +25,22 @@ section {
 
 section>div {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   grid-gap: 10px;
+  min-width: 550px;
 }
 
 span {
   vertical-align: middle;
   text-align: center;
-  line-height: 30px
+  line-height: 30px;
+}
+
+input {
+  vertical-align: middle;
+  text-align: center;
+  line-height: 30px;
+  max-width: 8em;
 }
 
 .full-width {
@@ -100,13 +108,13 @@ span {
   background-color: red;
 }
 
-#ring1>.label {
+/* #ring1>.label {
   grid-column: 1;
 }
 
 #ring2>.label {
   grid-column: 1;
-}
+} */
 
 .path {
   fill: none;

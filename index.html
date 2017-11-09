@@ -39,47 +39,47 @@
     <section id="controls" class="full-width">
       <div id="maxLoss12" class="row-1 half-width-first">
         <span class="label">Max Ring 1 to Ring 2 Loss %</span>
-        <span id="lmtd12Set" class="setting"></span>
+        <input type="number" id="lmtd12Set" class="setting"></input>
         <button id="lmtd12Status" class="onOff">***</button>
       </div>
       <div id="maxLoss1dmp" class="row-2 half-width-first">
         <span class="label">Max Ring 1 to Dump Loss %</span>
-        <span id="lmtd1dSet" class="setting"></span>
+        <input type="number" id="lmtd1dSet" class="setting"></input>
         <button id="lmtd1dStatus" class="onOff">***</button>
       </div>
       <div id="ring1" class="row-3 half-width-first">
         <span class="label">Ring 1</span>
-        <span id="lmtav10" class="setting"></span>
-        <span id="lmtav11" class="setting"></span>
-        <span id="lmtav12" class="setting"></span>
-        <span id="lmtav13" class="setting"></span>
+        <input type="number" id="lmtav10" class="setting"></input>
+        <input type="number" id="lmtav11" class="setting"></input>
+        <input type="number" id="lmtav12" class="setting"></input>
+        <input type="number" id="lmtav13" class="setting"></input>
       </div>
       <div id="maxLoss2dump" class="row-1 half-width-second">
         <span class="label">Max Ring 2 to Dump Loss %</span>
-        <span id="lmtd2dSet" class="setting"></span>
+        <input type="number" id="lmtd2dSet" class="setting"></input>
         <button id="lmtd2dStatus" class="onOff">***</button>
       </div>
       <div id="maxCurrentLoss" class="row-2 half-width-second">
         <span class="label">Max Current Loss</span>
-        <span id="lmtamx" class="setting"></span>
+        <input type="number" id="lmtamx" class="setting"></input>
       </div>
       <div id="ring2" class="row-3 half-width-second">
         <span class="label">Ring 2</span>
-        <span id="lmtav20" class="setting"></span>
-        <span id="lmtav21" class="setting"></span>
-        <span id="lmtav22" class="setting"></span>
-        <span id="lmtav23" class="setting"></span>
+        <input type="number" id="lmtav20" class="setting"></input>
+        <input type="number" id="lmtav21" class="setting"></input>
+        <input type="number" id="lmtav22" class="setting"></input>
+        <input type="number" id="lmtav23" class="setting"></input>
       </div>
     </section>
     <section id="plots" class="full-width">
       <div class="half-width-first row-1">
-        <svg id="channel1" data-label="Channel 1"></svg>
+        <svg id="channel1" data-label="Channel 1" data-max="1.1"  data-min="0"></svg>
       </div>
       <div class="half-width-first row-2">
-        <svg id="channel2" data-label="Channel 2"></svg>
+        <svg id="channel2" data-label="Channel 2" data-max="1.1"  data-min="0"></svg>
       </div>
       <div class="half-width-first row-3">
-        <svg id="channel3" data-label="Channel 3"></svg>
+        <svg id="channel3" data-label="Channel 3" data-max="1.1"  data-min="0"></svg>
       </div>
       <div class="half-width-second row-1">
         <svg id="ring12"></svg>

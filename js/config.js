@@ -268,17 +268,17 @@ const plots = [
   },
   {
     id: 'ring12',
-    device: 'P:LMTD12',
+    device: 'P:LMTD12@P,1000',
     type: 'time'
   },
   {
     id: 'ring1dump',
-    device: 'P:LMTD1D',
+    device: 'P:LMTD1D@P,1000',
     type: 'time'
   },
   {
     id: 'ring2dump',
-    device: 'P:LMTD2D',
+    device: 'P:LMTD2D@P,1000',
     type: 'time'
   },
 ]

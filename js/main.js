@@ -30,6 +30,7 @@ function dataToTextcontent(id) {
     }
 
     document.querySelector(`#${id}`).textContent = display
+    document.querySelector(`#${id}`).value = dpmData.data.toFixed(3)
   }
 }
 
@@ -69,11 +70,18 @@ function output(type) {
   }
 }
 
-function updatePlot(svg, xScale, yScale, path, type) {
+function updatePlot(
+  svg,
+  xScale,
+  yScale,
+  path,
+  type
+) {
   const length = 300
   let timeData = []
   let initialTime
   let finalTime
+  let dataset
   const timePlotLength = 5
   const timeFormat = d3.timeParse('%H:%M:%S')
   return (dpmData, dpmInfo) => {
@@ -92,11 +100,13 @@ function updatePlot(svg, xScale, yScale, path, type) {
         finalTime = new Date(finalTime.getTime() + timePlotLength * .25 * 60000)
       }
       timeData.push(dpmData.data)
-      xScale.domain([initialTime, finalTime])
+      xScale.domain([0, 300]) //TODO: Update xScale
       dataset = timeData
     }
 
-    yScale.domain([d3.min(dataset), d3.max(dataset)])
+    const min = svg.node().parentElement.dataset.min || d3.min(dataset)
+    const max = svg.node().parentElement.dataset.max || d3.max(dataset)
+    yScale.domain([min, max])
 
     svg.select('.path').remove()
 
@@ -200,3 +210,5 @@ for (plot of plots) {
 //TODO: Update plot size on window resize
 // window.addEventListener('resize', resizePlots)
 dpm.start()
+
+//TODO:Refactor to use chart class
