@@ -19,18 +19,22 @@ function makeSetting(type) {
   }
 }
 
-function dataToTextcontent(id) {
+function dataToTextcontent(id, options = {units: false}) {
   return (dpmData, dpmInfo) => {
-    let display = Number(dpmData.data)
+    const dataElement = document.querySelector(`#${id}`)
 
-    if (isNaN(display)) {
-      display = dpmData.data
-    } else {
-      display = `${display.toFixed(3)} ${dpmInfo.units}`
+    if (isNaN(dpmData.data)) {
+      dataElement.textContent = `${dpmData.data} ${dpmInfo.units}`
+      dataElement.value = dpmData.data
+      return
     }
 
-    document.querySelector(`#${id}`).textContent = display
-    document.querySelector(`#${id}`).value = dpmData.data.toFixed(3)
+    let display = Number(dpmData.data).toFixed(3)
+
+    if (dataElement !== document.activeElement) {
+      dataElement.textContent = display
+      dataElement.value = display
+    }
   }
 }
 
