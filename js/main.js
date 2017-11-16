@@ -1,7 +1,7 @@
 const dpm = new DPM()
 const acl = new ACLD()
 
-function makeSetting(type) {
+function makeSetting (type) {
   return (deviceName) => {
     if (type === 'reset') {
       return () => acl.run(`reset ${deviceName}`)
@@ -19,7 +19,7 @@ function makeSetting(type) {
   }
 }
 
-function dataToTextcontent(id, options = {units: false}) {
+function dataToTextcontent (id, options = {units: false}) {
   return (dpmData, dpmInfo) => {
     const dataElement = document.querySelector(`#${id}`)
 
@@ -38,7 +38,7 @@ function dataToTextcontent(id, options = {units: false}) {
   }
 }
 
-function booleanToBackground(id) {
+function booleanToBackground (id) {
   return (dpmData, dpmInfo) => {
     const element = document.querySelector(`#${id}`)
 
@@ -50,17 +50,17 @@ function booleanToBackground(id) {
   }
 }
 
-function booleanToOnOff(id) {
+function booleanToOnOff (id) {
   return (dpmData, dpmInfo) => {
     if (dpmData.data) {
       document.querySelector(`#${id}`).textContent = 'ON'
     } else {
       document.querySelector(`#${id}`).textContent = 'OFF'
     }
-  } 
+  }
 }
 
-function output(type) {
+function output (type) {
   return (id) => {
     if (type === 'text') {
       return dataToTextcontent(id)
@@ -74,7 +74,7 @@ function output(type) {
   }
 }
 
-function updatePlot(
+function updatePlot (
   svg,
   xScale,
   yScale,
@@ -89,7 +89,7 @@ function updatePlot(
   const timePlotLength = 5
   const timeFormat = d3.timeParse('%H:%M:%S')
   return (dpmData, dpmInfo) => {
-    if (type === 'array'){
+    if (type === 'array') {
       const dataArray = new Float32Array(dpmData.data, 4 * 5)
       dataset = Array.from(dataArray)
       xScale.domain([0, dataset.length])
@@ -99,12 +99,12 @@ function updatePlot(
         finalTime = new Date(initialTime.getTime() + timePlotLength * 60000)
       }
       if (timeData.length >= length) {
-        timeData.splice(0, length*.25)
-        initialTime = new Date(initialTime.getTime() + timePlotLength * .25 * 60000)
-        finalTime = new Date(finalTime.getTime() + timePlotLength * .25 * 60000)
+        timeData.splice(0, length * 0.25)
+        initialTime = new Date(initialTime.getTime() + timePlotLength * 0.25 * 60000)
+        finalTime = new Date(finalTime.getTime() + timePlotLength * 0.25 * 60000)
       }
       timeData.push(dpmData.data)
-      xScale.domain([0, 300]) //TODO: Update xScale
+      xScale.domain([0, 300]) // TODO: Update xScale
       dataset = timeData
     }
 
@@ -129,7 +129,7 @@ function updatePlot(
   }
 }
 
-function draw(type) {
+function draw (type) {
   return (id) => {
     const targetElement = document.querySelector(`#${id}`)
     const margin = {
@@ -139,7 +139,7 @@ function draw(type) {
       left: 60
     }
     const width = targetElement.parentElement.clientWidth - margin.left - margin.right
-    const height = (targetElement.parentElement.clientHeight/1.5) - margin.top - margin.bottom
+    const height = (targetElement.parentElement.clientHeight / 1.5) - margin.top - margin.bottom
 
     const xScale = d3.scaleLinear()
       .range([0, width]) // output
@@ -199,21 +199,15 @@ for (request of requests) {
   if (request.hasOwnProperty('bit')) {
     dpm.addRequest(
       request.device,
-      output(request.output)(request.id, {statusBit:request.bit})
+      output(request.output)(request.id, {statusBit: request.bit})
     )
   } else {
     dpm.addRequest(request.device, output(request.output)(request.id))
   }
-
 }
 
 for (plot of plots) {
   dpm.addRequest(plot.device, draw(plot.type)(plot.id))
 }
 
-//TODO: Update plot size on window resize
-// window.addEventListener('resize', resizePlots)
 dpm.start()
-
-//TODO:Refactor to use chart class
-//TODO:Prevent slow user setting changes from being overridden by device reading
