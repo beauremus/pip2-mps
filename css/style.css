@@ -41,6 +41,11 @@ input {
   text-align: center;
   line-height: 30px;
   max-width: 8em;
+  color: black;
+}
+
+button {
+  color: black;
 }
 
 .full-width {
