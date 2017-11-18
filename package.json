@@ -1,0 +1,19 @@
+{
+  "name": "pip2mps",
+  "version": "1.0.0",
+  "description": "Web display for PIP2IT Ring Pickups",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beauremus/pip2-mps.git"
+  },
+  "author": "Beau Harrison <beau@fnal.gov>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/beauremus/pip2-mps/issues"
+  },
+  "homepage": "https://github.com/beauremus/pip2-mps#readme"
+}
