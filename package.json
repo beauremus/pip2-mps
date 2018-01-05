@@ -15,5 +15,7 @@
   "bugs": {
     "url": "https://github.com/beauremus/pip2-mps/issues"
   },
-  "homepage": "https://github.com/beauremus/pip2-mps#readme"
+  "homepage": "https://github.com/beauremus/pip2-mps#readme",
+  "devDependencies": {},
+  "dependencies": {}
 }
