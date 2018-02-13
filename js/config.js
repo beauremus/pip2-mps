@@ -45,6 +45,21 @@ const requests = [
     output: 'onOff'
   },
   {
+    id: 'lmtd13Set',
+    device: 'P:LMTD13.SETTING',
+    output: 'text'
+  },
+  {
+    id: 'lmtd13Status',
+    device: 'P:LMTD13.STATUS.ON',
+    output: 'status'
+  },
+  {
+    id: 'lmtd13Status',
+    device: 'P:LMTD13.STATUS.ON',
+    output: 'onOff'
+  },
+  {
     id: 'lmtd1dSet',
     device: 'P:LMTD1D.SETTING',
     output: 'text'
@@ -57,6 +72,21 @@ const requests = [
   {
     id: 'lmtd1dStatus',
     device: 'P:LMTD1D.STATUS.ON',
+    output: 'onOff'
+  },
+  {
+    id: 'lmtd23Set',
+    device: 'P:LMTD23.SETTING',
+    output: 'text'
+  },
+  {
+    id: 'lmtd23Status',
+    device: 'P:LMTD23.STATUS.ON',
+    output: 'status'
+  },
+  {
+    id: 'lmtd23Status',
+    device: 'P:LMTD23.STATUS.ON',
     output: 'onOff'
   },
   {
@@ -75,6 +105,21 @@ const requests = [
     output: 'onOff'
   },
   {
+    id: 'lmtd3dSet',
+    device: 'P:LMTD3D.SETTING',
+    output: 'text'
+  },
+  {
+    id: 'lmtd3dStatus',
+    device: 'P:LMTD3D.STATUS.ON',
+    output: 'status'
+  },
+  {
+    id: 'lmtd3dStatus',
+    device: 'P:LMTD3D.STATUS.ON',
+    output: 'onOff'
+  },
+  {
     id: 'lmtav10',
     device: 'P:LMTAV1.SETTING[0]',
     output: 'text'
@@ -82,21 +127,6 @@ const requests = [
   {
     id: 'lmtav11',
     device: 'P:LMTAV1.SETTING[1]',
-    output: 'text'
-  },
-  {
-    id: 'lmtav12',
-    device: 'P:LMTAV1.SETTING[2]',
-    output: 'text'
-  },
-  {
-    id: 'lmtav13',
-    device: 'P:LMTAV1.SETTING[3]',
-    output: 'text'
-  },
-  {
-    id: 'lmtamx',
-    device: 'P:LMTAMX.SETTING',
     output: 'text'
   },
   {
@@ -110,13 +140,28 @@ const requests = [
     output: 'text'
   },
   {
-    id: 'lmtav22',
-    device: 'P:LMTAV2.SETTING[2]',
+    id: 'lmtav30',
+    device: 'P:LMTAV3.SETTING[0]',
     output: 'text'
   },
   {
-    id: 'lmtav23',
-    device: 'P:LMTAV2.SETTING[3]',
+    id: 'lmtav31',
+    device: 'P:LMTAV3.SETTING[1]',
+    output: 'text'
+  },
+  {
+    id: 'lmtavd0',
+    device: 'P:LMTAVD.SETTING[0]',
+    output: 'text'
+  },
+  {
+    id: 'lmtavd1',
+    device: 'P:LMTAVD.SETTING[1]',
+    output: 'text'
+  },
+  {
+    id: 'lmtamx',
+    device: 'P:LMTAMX.SETTING',
     output: 'text'
   },
   {
@@ -130,6 +175,11 @@ const requests = [
     output: 'text'
   },
   {
+    id: 'lmtsn3',
+    device: 'P:LMTSN3',
+    output: 'text'
+  },
+  {
     id: 'lmtsnd',
     device: 'P:LMTSND',
     output: 'text'
@@ -140,13 +190,28 @@ const requests = [
     output: 'text'
   },
   {
+    id: 'lmtd13',
+    device: 'P:LMTD13',
+    output: 'text'
+  },
+  {
     id: 'lmtd1d',
     device: 'P:LMTD1D',
     output: 'text'
   },
   {
+    id: 'lmtd23',
+    device: 'P:LMTD23',
+    output: 'text'
+  },
+  {
     id: 'lmtd2d',
     device: 'P:LMTD2D',
+    output: 'text'
+  },
+  {
+    id: 'lmtd3d',
+    device: 'P:LMTD3D',
     output: 'text'
   },
 ]
@@ -171,6 +236,18 @@ const settings = [
     type: 'toggle'
   },
   {
+    id: 'lmtd13Set',
+    device: 'P:LMTD13',
+    eventType: 'change',
+    type: 'set'
+  },
+  {
+    id: 'lmtd13Status',
+    device: 'P:LMTD13',
+    eventType: 'click',
+    type: 'toggle'
+  },
+  {
     id: 'lmtd1dSet',
     device: 'P:LMTD1D',
     eventType: 'change',
@@ -179,6 +256,18 @@ const settings = [
   {
     id: 'lmtd1dStatus',
     device: 'P:LMTD1D',
+    eventType: 'click',
+    type: 'toggle'
+  },
+  {
+    id: 'lmtd23Set',
+    device: 'P:LMTD23',
+    eventType: 'change',
+    type: 'set'
+  },
+  {
+    id: 'lmtd23Status',
+    device: 'P:LMTD23',
     eventType: 'click',
     type: 'toggle'
   },
@@ -195,6 +284,18 @@ const settings = [
     type: 'toggle'
   },
   {
+    id: 'lmtd3dSet',
+    device: 'P:LMTD3D',
+    eventType: 'change',
+    type: 'set'
+  },
+  {
+    id: 'lmtd3dStatus',
+    device: 'P:LMTD3D',
+    eventType: 'click',
+    type: 'toggle'
+  },
+  {
     id: 'lmtav10',
     device: 'P:LMTAV1[0]',
     eventType: 'change',
@@ -203,18 +304,6 @@ const settings = [
   {
     id: 'lmtav11',
     device: 'P:LMTAV1[1]',
-    eventType: 'change',
-    type: 'set'
-  },
-  {
-    id: 'lmtav12',
-    device: 'P:LMTAV1[2]',
-    eventType: 'change',
-    type: 'set'
-  },
-  {
-    id: 'lmtav13',
-    device: 'P:LMTAV1[3]',
     eventType: 'change',
     type: 'set'
   },
@@ -231,14 +320,26 @@ const settings = [
     type: 'set'
   },
   {
-    id: 'lmtav22',
-    device: 'P:LMTAV2[2]',
+    id: 'lmtav30',
+    device: 'P:LMTAV3[0]',
     eventType: 'change',
     type: 'set'
   },
   {
-    id: 'lmtav23',
-    device: 'P:LMTAV2[3]',
+    id: 'lmtav31',
+    device: 'P:LMTAV3[1]',
+    eventType: 'change',
+    type: 'set'
+  },
+  {
+    id: 'lmtavd0',
+    device: 'P:LMTAVD[0]',
+    eventType: 'change',
+    type: 'set'
+  },
+  {
+    id: 'lmtavd1',
+    device: 'P:LMTAVD[1]',
     eventType: 'change',
     type: 'set'
   },
@@ -262,6 +363,11 @@ const plots = [
     type: 'array'
   },
   {
+    id: 'channel4',
+    device: 'P:LMTRW4[:]@P,67',
+    type: 'array'
+  },
+  {
     id: 'channel3',
     device: 'P:LMTRW3[:]@P,67',
     type: 'array'
@@ -272,13 +378,28 @@ const plots = [
     type: 'time'
   },
   {
+    id: 'ring13',
+    device: 'P:LMTD13@P,1000',
+    type: 'time'
+  },
+  {
     id: 'ring1dump',
     device: 'P:LMTD1D@P,1000',
     type: 'time'
   },
   {
+    id: 'ring23',
+    device: 'P:LMTD23@P,1000',
+    type: 'time'
+  },
+  {
     id: 'ring2dump',
     device: 'P:LMTD2D@P,1000',
+    type: 'time'
+  },
+  {
+    id: 'ring3dump',
+    device: 'P:LMTD3D@P,1000',
     type: 'time'
   },
 ]

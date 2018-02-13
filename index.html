@@ -17,103 +17,156 @@
       <h1>Ring Pickup Loss Protection</h1>
     </header>
     <section id="status" class="full-width">
-      <div id="task" class="row-1 half-width-first">
+      <div id="task" class="row-1">
         <span class="label">Task Status</span>
         <span id="lmttyp" class="reading"></span>
         <button id="reset">Reset</button>
       </div>
-      <div id="gate" class="row-2 half-width-first">
-        <span class="label">Gate Width</span>
-        <span id="lmtgw" class="reading"></span>
-      </div>
-      <div id="samp" class="row-1 half-width-second">
+      <div id="samp" class="row-1">
         <span class="label">Sampling Window</span>
         <span id="lmtwsz" class="reading"></span>
       </div>
-      <div id="repRate" class="row-2 half-width-second">
+      <div id="gate" class="row-2">
+        <span class="label">Gate Width</span>
+        <span id="lmtgw" class="reading"></span>
+      </div>
+      <div id="repRate" class="row-2">
         <span class="label">PIP2IT Event AC Rep Rate</span>
         <span id="acrate" class="reading"></span>
       </div>
     </section>
     <section id="controls" class="full-width">
-      <div id="maxLoss12" class="row-1 half-width-first">
+      <div id="maxLoss12" class="row-1">
         <span class="label">Max Ring 1 to Ring 2 Loss %</span>
         <input type="number" id="lmtd12Set" class="setting"></input>
         <button id="lmtd12Status" class="onOff">***</button>
       </div>
-      <div id="maxLoss1dmp" class="row-2 half-width-first">
+      <div id="maxLoss13" class="row-1">
+        <span class="label">Max Ring 1 to Ring 3 Loss %</span>
+        <input type="number" id="lmtd13Set" class="setting"></input>
+        <button id="lmtd13Status" class="onOff">***</button>
+      </div>
+      <div id="maxLoss1dmp" class="row-1">
         <span class="label">Max Ring 1 to Dump Loss %</span>
         <input type="number" id="lmtd1dSet" class="setting"></input>
         <button id="lmtd1dStatus" class="onOff">***</button>
       </div>
-      <div id="ring1" class="row-3 half-width-first">
-        <span class="label">Ring 1</span>
-        <input type="number" id="lmtav10" class="setting"></input>
-        <input type="number" id="lmtav11" class="setting"></input>
-        <input type="number" id="lmtav12" class="setting"></input>
-        <input type="number" id="lmtav13" class="setting"></input>
+      <div id="maxLoss23" class="row-2">
+        <span class="label">Max Ring 2 to Ring 3 Loss %</span>
+        <input type="number" id="lmtd23Set" class="setting"></input>
+        <button id="lmtd23Status" class="onOff">***</button>
       </div>
-      <div id="maxLoss2dump" class="row-1 half-width-second">
+      <div id="maxLoss2dump" class="row-2">
         <span class="label">Max Ring 2 to Dump Loss %</span>
         <input type="number" id="lmtd2dSet" class="setting"></input>
         <button id="lmtd2dStatus" class="onOff">***</button>
       </div>
-      <div id="maxCurrentLoss" class="row-2 half-width-second">
-        <span class="label">Max Current Loss</span>
-        <input type="number" id="lmtamx" class="setting"></input>
+      <div id="maxLoss3dump" class="row-2">
+        <span class="label">Max Ring 3 to Dump Loss %</span>
+        <input type="number" id="lmtd3dSet" class="setting"></input>
+        <button id="lmtd3dStatus" class="onOff">***</button>
       </div>
-      <div id="ring2" class="row-3 half-width-second">
+      <div id="ring1" class="row-3">
+        <span class="label">Ring 1</span>
+        <input type="number" id="lmtav10" class="setting"></input>
+        <input type="number" id="lmtav11" class="setting"></input>
+      </div>
+      <div id="ring2" class="row-3">
         <span class="label">Ring 2</span>
         <input type="number" id="lmtav20" class="setting"></input>
         <input type="number" id="lmtav21" class="setting"></input>
-        <input type="number" id="lmtav22" class="setting"></input>
-        <input type="number" id="lmtav23" class="setting"></input>
+      </div>
+      <div id="ring3" class="row-3">
+        <span class="label">Ring 3</span>
+        <input type="number" id="lmtav30" class="setting"></input>
+        <input type="number" id="lmtav31" class="setting"></input>
+      </div>
+      <div id="ringd" class="row-3">
+        <span class="label">Dump Ring</span>
+        <input type="number" id="lmtavd0" class="setting"></input>
+        <input type="number" id="lmtavd1" class="setting"></input>
+      </div>
+      <div id="maxCurrentLoss" class="row-3">
+        <span class="label">Max Current Loss</span>
+        <input type="number" id="lmtamx" class="setting"></input>
       </div>
     </section>
     <section id="plots" class="full-width">
-      <div class="half-width-first row-1">
-        <svg id="channel1" data-label="Channel 1" data-max="1.1"  data-min="0"></svg>
-      </div>
-      <div class="half-width-first row-2">
-        <svg id="channel2" data-label="Channel 2" data-max="1.1"  data-min="0"></svg>
-      </div>
-      <div class="half-width-first row-3">
-        <svg id="channel3" data-label="Channel 3" data-max="1.1"  data-min="0"></svg>
-      </div>
-      <div class="half-width-second row-1">
-        <svg id="ring12"></svg>
-      </div>
-      <div class="half-width-second row-2">
-        <svg id="ring1dump"></svg>
-      </div>
-      <div class="half-width-second row-3">
-        <svg id="ring2dump"></svg>
-      </div>
+      <section id="ringArrays">
+        <div class="row-1">
+          <svg id="channel1" data-label="Channel 1" data-max="1.1"  data-min="0"></svg>
+        </div>
+        <div class="row-2">
+          <svg id="channel2" data-label="Channel 2" data-max="1.1"  data-min="0"></svg>
+        </div>
+        <div class="row-3">
+          <svg id="channel4" data-label="Channel 4" data-max="1.1"  data-min="0"></svg>
+        </div>
+        <div class="row-4">
+          <svg id="channel3" data-label="Channel 3" data-max="1.1"  data-min="0"></svg>
+        </div>
+      </section>
+      <section id="ringDifferences">
+        <div class="row-1">
+          <svg id="ring12"></svg>
+        </div>
+        <div class="row-1">
+          <svg id="ring13"></svg>
+        </div>
+        <div class="row-2">
+          <svg id="ring1dump"></svg>
+        </div>
+        <div class="row-2">
+          <svg id="ring23"></svg>
+        </div>
+        <div class="row-3">
+          <svg id="ring2dump"></svg>
+        </div>
+        <div class="row-3">
+          <svg id="ring3dump"></svg>
+        </div>
+      </section>
     </section>
     <section id="lastTrip" class="full-width">
-      <div id="ring1current" class="row-1 half-width-first">
+      <div id="ring1current" class="row-1">
         <span class="label">Ring 1 Current</span>
         <span id="lmtsn1" class="reading"></span>
       </div>
-      <div id="ring2current" class="row-2 half-width-first">
+      <div id="ring2current" class="row-1">
         <span class="label">Ring 2 Current</span>
         <span id="lmtsn2" class="reading"></span>
       </div>
-      <div id="dumpCurrent" class="row-3 half-width-first">
+      <div id="ring3current" class="row-1">
+        <span class="label">Ring 3 Current</span>
+        <span id="lmtsn3" class="reading"></span>
+      </div>
+      <div id="dumpCurrent" class="row-1">
         <span class="label">Dump Current</span>
         <span id="lmtsnd" class="reading"></span>
       </div>
-      <div id="loss12" class="row-1 half-width-second">
+      <div id="loss12" class="row-2">
         <span class="label">Ring 1 to Ring 2 % Loss</span>
         <span id="lmtd12" class="reading"></span>
       </div>
-      <div id="loss1dump" class="row-2 half-width-second">
+      <div id="loss13" class="row-2">
+        <span class="label">Ring 1 to Ring 3 % Loss</span>
+        <span id="lmtd13" class="reading"></span>
+      </div>
+      <div id="loss1dump" class="row-2">
         <span class="label">Ring 1 to Dump % Loss</span>
         <span id="lmtd1d" class="reading"></span>
       </div>
-      <div id="loss2dump" class="row-3 half-width-second">
+      <div id="loss23" class="row-3">
+        <span class="label">Ring 2 to Ring 3 % Loss</span>
+        <span id="lmtd23" class="reading"></span>
+      </div>
+      <div id="loss2dump" class="row-3">
         <span class="label">Ring 2 to Dump % Loss</span>
         <span id="lmtd2d" class="reading"></span>
+      </div>
+      <div id="loss3dump" class="row-3">
+        <span class="label">Ring 3 to Dump % Loss</span>
+        <span id="lmtd3d" class="reading"></span>
       </div>
     </section>
     <script src="js/vendor/d3.v4.min.js"></script>

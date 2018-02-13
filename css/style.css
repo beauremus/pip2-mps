@@ -9,9 +9,7 @@
 body {
   font-family: "system";
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-gap: 20px;
-  grid-auto-rows: minmax(50px, auto);
+  grid-gap: 1em;
 }
 
 header {
@@ -26,16 +24,16 @@ h1 {
 
 section {
   display: grid;
-  grid-template-columns: repeat(10, 1fr);
-  grid-gap: 10px;
-  grid-auto-rows: minmax(30px, auto);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 1em;
+  grid-auto-rows: 2em;
 }
 
 section>div {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 10px;
-  min-width: 550px;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  grid-gap: 0.1em;
+  grid-auto-rows: minmax(2em, 1fr);
 }
 
 span {
@@ -56,7 +54,7 @@ button {
   color: black;
 }
 
-.full-width {
+/* .full-width {
   grid-column: 1/11;
 }
 
@@ -66,9 +64,9 @@ button {
 
 .half-width-second {
   grid-column: 6/11;
-}
+} */
 
-.row-1 {
+/* .row-1 {
   grid-row: 1;
 }
 
@@ -82,18 +80,18 @@ button {
 
 .channels {
   grid-column: 1/6;
-}
+} */
 
 .label {
   background-color: black;
   color: cyan;
-  grid-column: 1/3;
+  /* grid-column: 1/3; */
 }
 
 .reading {
   font-family: Roboto, "Courier New", monospace;
   background-color: grey;
-  grid-column: 3/5;
+  /* grid-column: 3/5; */
 }
 
 .setting {
@@ -101,7 +99,7 @@ button {
   background-color: grey;
 }
 
-#task * {
+/* #task * {
   grid-row: 1;
 }
 
@@ -115,7 +113,7 @@ button {
 
 #repRate * {
   grid-row: 2;
-}
+} */
 
 #reset {
   background-color: red;
@@ -137,4 +135,24 @@ button {
 
 #plots>div {
   grid-gap: 0;
+}
+
+/* #status {
+  grid-area: status;
+}
+
+#controls {
+  grid-area: controls;
+}
+
+#plots {
+  grid-area: plots;
+}
+
+#last {
+  grid-area: last;
+} */
+
+.readings {
+  height: 2em;
 }
