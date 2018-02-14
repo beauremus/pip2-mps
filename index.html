@@ -17,7 +17,7 @@
             <section class="status-group control-group">
                 <span class="description">Task Status</span>
                 <span class="reading acnet" data-device="P:LMTTYP"></span>
-                <button class="control acnet" data-device="P:LMTTYP"></button>
+                <button class="control acnet" data-device="P:LMTTYP" data-control="reset">Reset</button>
             </section>
             <section class="reading-group">
                 <span class="description">Gate Width</span>
@@ -36,32 +36,32 @@
             <section class="setting-group control-group">
                 <span class="description">Ring 1 to Ring 2 Loss Max %</span>
                 <input type="number" class="setting acnet" data-device="P:LMTD12" placeholder="No Data" min="-100.0" max="100.0">
-                <button class="control">ON</button>
+                <button class="control status acnet" data-device="P:LMTD12" data-control="onOff" data-status="on"></button>
             </section>
             <section class="setting-group control-group">
                 <span class="description">Ring 1 to Ring 3 Loss Max %</span>
                 <input type="number" class="setting acnet" data-device="P:LMTD13" placeholder="No Data" min="-100.0" max="100.0">
-                <button class="control">OFF</button>
+                <button class="control status acnet" data-device="P:LMTD13" data-control="onOff" data-status="on"></button>
             </section>
             <section class="setting-group control-group">
                 <span class="description">Ring 1 to Dump Loss Max %</span>
                 <input type="number" class="setting acnet" data-device="P:LMTD1D" placeholder="No Data" min="-100.0" max="100.0">
-                <button class="control">OFF</button>
+                <button class="control status acnet" data-device="P:LMTD1D" data-control="onOff" data-status="on"></button>
             </section>
             <section class="setting-group control-group">
                 <span class="description">Ring 2 to Ring 3 Loss Max %</span>
                 <input type="number" class="setting acnet" data-device="P:LMTD23" placeholder="No Data" min="-100.0" max="100.0">
-                <button class="control">OFF</button>
+                <button class="control status acnet" data-device="P:LMTD23" data-control="onOff" data-status="on"></button>
             </section>
             <section class="setting-group control-group">
                 <span class="description">Ring 2 to Dump Loss Max %</span>
                 <input type="number" class="setting acnet" data-device="P:LMTD2D" placeholder="No Data" min="-100.0" max="100.0">
-                <button class="control">OFF</button>
+                <button class="control status acnet" data-device="P:LMTD2D" data-control="onOff" data-status="on"></button>
             </section>
             <section class="setting-group control-group">
                 <span class="description">Ring 3 to Dump Loss Max %</span>
                 <input type="number" class="setting acnet" data-device="P:LMTD3D" placeholder="No Data" min="-100.0" max="100.0">
-                <button class="control">OFF</button>
+                <button class="control status acnet" data-device="P:LMTD3D" data-control="onOff" data-status="on"></button>
             </section>
             <section class="setting-group">
                 <span class="description">Ring 1</span>

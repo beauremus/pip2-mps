@@ -1,17 +1,17 @@
 /* global DPM */
 const dpm = new DPM()
 const main = document.querySelector('#auto')
-const deviceProperties = ['status', 'control', 'setting', 'reading']
+const deviceProperties = ['status', 'setting', 'reading']
 
 function updateHTML(updateType) {
   let domProperty = 'textContent'
-  if (updateType === 'setting') {
-    domProperty = 'value'
-  }
+  if (updateType === 'setting') domProperty = 'value'
   return (data, info) => {
     const targets = document.querySelectorAll(`[data-device="${info.name}"].${updateType}`)
+    let dataProperty = data.data
     for (let target of targets) {
-      target[domProperty] = data.data
+      if (updateType === 'status') dataProperty = data[target.dataset.status] ? 'On' : 'Off'
+      target[domProperty] = dataProperty
     }
   }
 }
