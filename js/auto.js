@@ -34,12 +34,42 @@ function toggleState(node, state1, state2) {
   return newState
 }
 
+function aclSet(device, value) {
+  console.log(`ACL: set ${device} ${value}`)
+  // acl.run(`set ${device} ${value}`)
+  return {device, value}
+}
+
+function aclControl(device, control) {
+  console.log(`ACL: ${control} ${device}`)
+  // acl.run(`${control} ${device}`)
+  return {device, control}
+}
+
+function sendChange(element) {
+  element.dispatchEvent(new Event('change', { bubbles: true}))
+}
+
+function knob(device, delta = 1) {
+  return (event) => {
+    event.preventDefault()
+    let newValue = event.target.valueAsNumber
+    if (event.keyCode === 115) {
+      newValue -= delta
+    } else if (event.keyCode === 116) {
+      newValue += delta
+    }
+    event.target.value = newValue
+    sendChange(event.target)
+  }
+}
+
 function setSettingsEvents(node, updater) {
+  node.addEventListener('keypress', knob(node.dataset.device))
   node.addEventListener('mouseenter', updater.stop)
   node.addEventListener('mouseleave', updater.start)
   node.addEventListener('change', (event) => {
-    console.log(`ACL: set ${node.dataset.device} ${event.target.valueAsNumber}`)
-    // acl.run(`set ${node.dataset.device} ${event.target.valueAsNumber}`)
+    aclSet(node.dataset.device, event.target.valueAsNumber)
   })
 }
 
@@ -47,13 +77,11 @@ function setControlEvents(node) {
   const controlType = node.dataset.control
   if (controlType === 'onOff') {
     node.addEventListener('click', () => {
-      console.log(`ACL: ${toggleState(node, 'On', 'Off')} ${node.dataset.device}`)
-      // acl.run(`${toggleState(node, 'On', 'Off')} ${node.dataset.device}`)
+      aclControl(node.dataset.device, toggleState(node, 'On', 'Off'))
     })
   } else if (controlType === 'reset') {
     node.addEventListener('click', () => {
-      console.log(`ACL: reset ${node.dataset.device}`)
-      // acl.run(`reset ${node.dataset.device}`)
+      aclControl(node.dataset.device, controlType)
     })
   }
 }
