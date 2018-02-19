@@ -35,14 +35,12 @@ function toggleState(node, state1, state2) {
 }
 
 function aclSet(device, value) {
-  console.log(`ACL: set ${device} ${value}`)
-  // acl.run(`set ${device} ${value}`)
+  acl.run(`set ${device} ${value}`)
   return {device, value}
 }
 
 function aclControl(device, control) {
-  console.log(`ACL: ${control} ${device}`)
-  // acl.run(`${control} ${device}`)
+  acl.run(`${control} ${device}`)
   return {device, control}
 }
 
